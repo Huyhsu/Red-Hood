@@ -313,7 +313,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -383,7 +383,7 @@ Transform:
   m_Children:
   - {fileID: 1448868898}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &971262815
 Animator:
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5438a34c8ecd57947a539dec8d9d03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHoldTime: 0.2
 --- !u!114 &971262818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 66da774d-ce11-45ab-bd88-b069243039f8
     m_ActionName: Gameplay/New action[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 971262817}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 151b6581-502e-4d03-9288-4eac0e573e41
+    m_ActionName: Gameplay/Jump[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -530,7 +547,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1448868897
 GameObject:

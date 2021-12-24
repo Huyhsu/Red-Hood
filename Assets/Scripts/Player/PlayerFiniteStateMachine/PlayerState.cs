@@ -17,7 +17,7 @@ public class PlayerState
 
     private string _animationBoolName;
 
-    public PlayerState(Player player, string animationBoolName)
+    protected PlayerState(Player player, string animationBoolName)
     {
         Player = player;
         _animationBoolName = animationBoolName;

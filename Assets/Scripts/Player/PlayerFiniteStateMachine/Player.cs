@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerJumpGroundedState JumpGroundedState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
     
 
     #endregion
@@ -31,12 +35,6 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    #region Other Variables
-
-    private Vector2 _workspace;
-
-    #endregion
-
     #region Unity Callback Functions
 
     private void Awake()
@@ -47,6 +45,10 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
+        JumpState = new PlayerJumpState(this, "inAir");
+        JumpGroundedState = new PlayerJumpGroundedState(this, "jumpGrounded");
+        InAirState = new PlayerInAirState(this, "inAir");
+        LandState = new PlayerLandState(this, "land");
 
     }
 
@@ -74,7 +76,8 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
     #endregion
 }
