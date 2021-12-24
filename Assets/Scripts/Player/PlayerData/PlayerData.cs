@@ -12,6 +12,11 @@ public class PlayerData : ScriptableObject
     public float jumpVelocity = 15f;
     public int amountOfJumps = 1;
 
+    [Header("Slide State")]
+    public float slideVelocity = 20f;
+    public float slideCooldown = 0.5f;
+    public float slideTime = 0.2f;
+    
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
     public float variableJumpHeightMultiplier = 0.5f;

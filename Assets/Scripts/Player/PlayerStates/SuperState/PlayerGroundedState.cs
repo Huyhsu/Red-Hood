@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
@@ -7,6 +8,7 @@ public class PlayerGroundedState : PlayerState
     protected int XInput;
     protected int YInput;
     protected bool JumpInput;
+    protected bool SlideInput;
 
     private bool _isGrounded;
     
@@ -38,10 +40,15 @@ public class PlayerGroundedState : PlayerState
         XInput = Player.InputHandler.NormalizedXInput;
         YInput = Player.InputHandler.NormalizedYInput;
         JumpInput = Player.InputHandler.JumpInput;
+        SlideInput = Player.InputHandler.SlideInput;
 
         if (JumpInput && Player.JumpState.CanJump())
         {
             StateMachine.ChangeState(Player.JumpGroundedState);
+        }
+        else if (SlideInput && Player.SlideState.CanSlide())
+        {
+            StateMachine.ChangeState(Player.SlideState);
         }
         else if (!_isGrounded)
         {

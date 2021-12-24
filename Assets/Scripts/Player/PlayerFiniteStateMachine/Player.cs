@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public PlayerJumpGroundedState JumpGroundedState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerSlideState SlideState { get; private set; }
     
 
     #endregion
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
         JumpGroundedState = new PlayerJumpGroundedState(this, "jumpGrounded");
         InAirState = new PlayerInAirState(this, "inAir");
         LandState = new PlayerLandState(this, "land");
+        SlideState = new PlayerSlideState(this, "slide");
 
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerAbilityState
 {
-    #region Jump Related
+    #region w/ Jump
 
     private int amountOfJumpsLeft;
     

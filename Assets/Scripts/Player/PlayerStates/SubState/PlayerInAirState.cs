@@ -20,7 +20,7 @@ public class PlayerInAirState : PlayerState
 
     #endregion
 
-    #region Jump Check Functions
+    #region w/ Jump
 
     public void StartCoyoteTime() => _isCoyoteTime = true;
 
@@ -28,17 +28,16 @@ public class PlayerInAirState : PlayerState
 
     private void CheckJumpMultiplier()
     {
-        if (_isJumping)
+        if (!_isJumping) return;
+        
+        if (_jumpInputStop)
         {
-            if (_jumpInputStop)
-            {
-                Core.Movement.SetVelocityY(Core.Movement.CurrentVelocity.y * PlayerData.variableJumpHeightMultiplier);
-                _isJumping = false;
-            }
-            else if (Core.Movement.CurrentVelocity.y <= 0f)
-            {
-                _isJumping = false;
-            }
+            Core.Movement.SetVelocityY(Core.Movement.CurrentVelocity.y * PlayerData.variableJumpHeightMultiplier);
+            _isJumping = false;
+        }
+        else if (Core.Movement.CurrentVelocity.y <= 0f)
+        {
+            _isJumping = false;
         }
     }
     
@@ -47,7 +46,7 @@ public class PlayerInAirState : PlayerState
         if (_isCoyoteTime && Time.time >= StartTime + PlayerData.coyoteTime)
         {
             _isCoyoteTime = false;
-            
+            Player.JumpState.DecreaseAmountOfJumpsLeft();
         }
     }
 
@@ -76,6 +75,9 @@ public class PlayerInAirState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        CheckCoyoteTime();
+        
         _xInput = Player.InputHandler.NormalizedXInput;
         _jumpInput = Player.InputHandler.JumpInput;
         _jumpInputStop = Player.InputHandler.JumpInputStop;

@@ -6,7 +6,8 @@ public class PlayerAbilityState : PlayerState
 {
     protected bool IsAbilityDone;
     protected bool IsGrounded;
-    
+
+    protected bool JumpInput;
     public PlayerAbilityState(Player player, string animationBoolName) : base(player, animationBoolName)
     {
     }
@@ -31,16 +32,15 @@ public class PlayerAbilityState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (IsAbilityDone)
+        if (!IsAbilityDone) return;
+        
+        if (IsGrounded && Core.Movement.CurrentVelocity.y < 0.01f)
         {
-            if (IsGrounded && Core.Movement.CurrentVelocity.y < 0.01f)
-            {
-                StateMachine.ChangeState(Player.IdleState);
-            }
-            else
-            {
-                StateMachine.ChangeState(Player.InAirState);
-            }
+            StateMachine.ChangeState(Player.IdleState);
+        }
+        else
+        {
+            StateMachine.ChangeState(Player.InAirState);
         }
     }
 
